@@ -1,5 +1,5 @@
 import React from "react";
-import Aux from "../../hoc/Aux";
+import Aux from "../../hoc/Aux/Aux";
 import Burger from "../../components/Burger/Burger";
 import BurgerControls from "../../components/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
@@ -24,6 +24,9 @@ class BurgerBuilder extends React.Component {
     isShowBackdrop: false
   };
 
+  componentDidMount() {
+    console.log(this.props);
+  }
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
       .map(igKey => {
@@ -62,7 +65,9 @@ class BurgerBuilder extends React.Component {
   };
 
   purchaseContinueHandler = () => {
-    alert("you continued");
+    console.log(this.props.history);
+    this.props.history.push('/checkout');
+    console.log(this.props.history);
   }
 
   removeIngredientHandler = type => {
