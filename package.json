@@ -6,14 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gnwerdna/burger-builder-project.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gnwerdna/burger-builder-project/issues"
+  "dependencies": {
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.4",
+    "multer": "^1.4.1"
   },
-  "homepage": "https://github.com/gnwerdna/burger-builder-project#readme"
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
 }
