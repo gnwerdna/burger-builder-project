@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ingredientSchema = new mongoose.Schema({
+const burgerSchema = new mongoose.Schema({
     salad: {
         type: Number,
         default: 0
@@ -19,6 +19,6 @@ const ingredientSchema = new mongoose.Schema({
     }
 });
 
-const Ingredient = mongoose.model('Ingredient', ingredientSchema);
+const Burger = mongoose.model('Burger', burgerSchema);
 
-module.exports = Ingredient
+module.exports = Burger

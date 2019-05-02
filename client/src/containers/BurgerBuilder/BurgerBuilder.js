@@ -27,8 +27,10 @@ class BurgerBuilder extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
+    //fetch ingredient data in here
   }
+
+
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
       .map(igKey => {
@@ -40,6 +42,8 @@ class BurgerBuilder extends React.Component {
 
     this.setState({ purchasable: sum > 0 });
   }
+
+
   addIngredientHandler = type => {
     const oldCount = this.state.ingredients[type];
     const updatedCount = oldCount + 1;
@@ -59,30 +63,32 @@ class BurgerBuilder extends React.Component {
   };
 
   purchaseHandler = () => {
-    // this.setState({ purchasing: true });
-    const queryParams = [];
-    for(let i in this.state.ingredients) {
-      queryParams.push(encodeURIComponent(i)+ "=" + encodeURIComponent(this.state.ingredients[i]));
-    }
-
-    queryParams.push('price='+this.state.totalPrice);
-
-    const queryString = queryParams.join('&');
-    this.props.history.push({
-      pathname: "/checkout",
-      search: "?" + queryString
-    });
+    this.setState({ purchasing: true });
   };
+
 
   purchaseCancelHandler = () => {
     this.setState({ purchasing: false });
   };
 
+
   purchaseContinueHandler = () => {
+    
     this.setState({ loading: true });
-    console.log(this.props.history);
-    this.props.history.push("/checkout");
-    console.log(this.props.history);
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) +
+          "=" +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+    queryParams.push("price=" + this.state.totalPrice);
+    const queryString = queryParams.join("&");
+    this.props.history.push({
+      pathname: "/checkout",
+      search: "?" + queryString
+    });
   };
 
   removeIngredientHandler = type => {

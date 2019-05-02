@@ -6,6 +6,7 @@ class Orders extends React.Component {
     }
     componentDidMount() {
         //fetch data in here
+        //ex axios.get('/orders.json')
     }
     render() {
          return (
