@@ -5,7 +5,10 @@ const auth = require("../middleware/auth");
 router.post("/orders", auth, async (req, res) => {
   const order = new Order({
     ...req.body,
-    owner: req.user._id 
+    customer: {
+      ...req.body.customer,
+      owner: req.user._id
+    }
   });
   try {
     await order.save();

@@ -10,7 +10,23 @@ class Layout extends React.Component {
     isAuthenticated: false
   };
 
+  componentWillMount() {
+    const token = localStorage.getItem('token');
+    if(token) {
+      this.setState({isAuthenticated: true})
+    } else {
+      this.setState({isAuthenticated: false})
+    }
+  }
 
+  // componentDidUpdate() {
+  //   const token = localStorage.getItem('token');
+  //   if(!token) {
+  //     this.setState({isAuthenticated: false})
+  //   } else {
+  //     this.setState({isAuthenticated: true})
+  //   }
+  // }
   sideDrawerCloseHandler = () => {
     this.setState({ showSideDrawer: false });
   };

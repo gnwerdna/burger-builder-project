@@ -15,12 +15,6 @@ const orderSchema = new mongoose.Schema({
     },
     zipCode: {
       type: String
-    },
-    email: {
-      type: String
-    },
-    name: {
-      type: String
     }
   },
   deleveryMethod: {

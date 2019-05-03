@@ -109,7 +109,7 @@ class Auth extends React.Component {
             localStorage.setItem("token", resData.result.token);
             this.setState({ token: resData.result.token });
             this.props.history.push("/");
-            this.checkAuthTimeout(3600);
+            this.checkAuthTimeout(3600000);
           }
         });
     } else {
@@ -128,7 +128,7 @@ class Auth extends React.Component {
             localStorage.setItem("token", resData.result.token);
             this.setState({ token: resData.result.token });
             this.props.history.push("/");
-            this.checkAuthTimeout(3600)
+            this.checkAuthTimeout(3600000)
           }
         });
     }
@@ -179,7 +179,7 @@ class Auth extends React.Component {
         </form>
         {errorMessage}
         <Button clicked={this.switchAuthModeHandler} btnType="Danger">
-          Swith to {!this.state.isSignup ? "Sign in" : "Sign up"}
+          Swith to {!this.state.isSignup ? "Sign up":"Sign in"}
         </Button>
       </div>
     );

@@ -166,7 +166,7 @@ class ContactData extends React.Component {
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.price,
-      orderData: formData
+      customer: formData
     };
 
     //fetch in here method: post,
