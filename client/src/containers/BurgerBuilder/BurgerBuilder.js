@@ -23,7 +23,8 @@ class BurgerBuilder extends React.Component {
     purchasable: false,
     purchasing: false,
     isShowBackdrop: false,
-    loading: false
+    loading: false,
+    building: false
   };
 
   componentDidMount() {
@@ -57,13 +58,18 @@ class BurgerBuilder extends React.Component {
     const updatedPrice = oldPrice + priceAddition;
     this.setState({
       ingredients: updatedIngredients,
-      totalPrice: updatedPrice
+      totalPrice: updatedPrice,
+      building: true
     });
     this.updatePurchaseState(updatedIngredients);
   };
 
   purchaseHandler = () => {
-    this.setState({ purchasing: true });
+    if(localStorage.getItem('token')) {
+      this.setState({ purchasing: true });
+    } else { 
+      this.props.history.push('/auth');
+    }
   };
 
 
@@ -104,7 +110,8 @@ class BurgerBuilder extends React.Component {
     const updatedPrice = oldPrice - priceRemoved;
     this.setState({
       ingredients: updatedIngredients,
-      totalPrice: updatedPrice
+      totalPrice: updatedPrice,
+      building: true
     });
     this.updatePurchaseState(updatedIngredients);
   };
@@ -127,6 +134,7 @@ class BurgerBuilder extends React.Component {
             totalPrice={this.state.totalPrice}
             purchasable={this.state.purchasable}
             ordered={this.purchaseHandler}
+            isAuth={localStorage.getItem("token")}
           />
         </Aux>
       );

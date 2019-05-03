@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./Input.module.css";
-import { PromiseProvider } from "mongoose";
 
 const input = props => {
   let inputElement = null;

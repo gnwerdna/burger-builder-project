@@ -3,13 +3,86 @@ import classes from "./ContactData.module.css";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
 class ContactData extends React.Component {
+  // state = {
+  //   orderForm: {
+  //     name: {
+  //       elementType: "input",
+  //       elementConfig: {
+  //         type: "text",
+  //         placeholder: "Your name"
+  //       },
+  //       value: "",
+  //       validation: {
+  //         required: true
+  //       },
+  //       valid: false,
+  //       touched: false
+  //     },
+  //     street: {
+  //       elementType: "input",
+  //       elementConfig: {
+  //         type: "text",
+  //         placeholder: "Street"
+  //       },
+  //       value: "",
+  //       validation: {
+  //         required: true
+  //       },
+  //       valid: false,
+  //       touched: false
+  //     },
+  //     zipCode: {
+  //       elementType: "input",
+  //       elementConfig: {
+  //         type: "text",
+  //         placeholder: "ZIP Code"
+  //       },
+  //       value: "",
+  //       validation: {
+  //         required: true,
+  //         minLength: 5,
+  //         maxLength: 5
+  //       },
+  //       valid: false,
+  //       touched: false
+  //     },
+  //     email: {
+  //       elementType: "input",
+  //       elementConfig: {
+  //         type: "email",
+  //         placeholder: "Your email"
+  //       },
+  //       value: "",
+  //       validation: {
+  //         required: true
+  //       },
+  //       valid: false,
+  //       touched: false
+  //     },
+  //     deliveryMethod: {
+  //       elementType: "select",
+  //       elementConfig: {
+  //         options: [
+  //           { value: "fastest", displayValue: "Fastest" },
+  //           { value: "cheapest", displayValue: "Cheapest" }
+  //         ]
+  //       },
+  //       value: "",
+  //       validation: {},
+  //       valid: true
+  //     }
+  //   },
+  //   formIsValid: false
+  // };
+
+
   state = {
     orderForm: {
-      name: {
+      street: {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Your name"
+          placeholder: "Street"
         },
         value: "",
         validation: {
@@ -18,11 +91,11 @@ class ContactData extends React.Component {
         valid: false,
         touched: false
       },
-      street: {
+      name: {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Street"
+          placeholder: "Your name"
         },
         value: "",
         validation: {
@@ -46,32 +119,6 @@ class ContactData extends React.Component {
         valid: false,
         touched: false
       },
-      country: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Country"
-        },
-        value: "",
-        validation: {
-          required: true
-        },
-        valid: false,
-        touched: false
-      },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "Your email"
-        },
-        value: "",
-        validation: {
-          required: true
-        },
-        valid: false,
-        touched: false
-      },
       deliveryMethod: {
         elementType: "select",
         elementConfig: {
@@ -90,7 +137,7 @@ class ContactData extends React.Component {
 
   checkValidity(value, rules) {
     let isValid = true;
-    if(!rules) {
+    if (!rules) {
       return true;
     }
     if (rules.required) {
@@ -123,6 +170,18 @@ class ContactData extends React.Component {
     };
 
     //fetch in here method: post,
+    fetch("/orders", {
+      method: "post",
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: JSON.stringify(order)
+    }).then(res => {
+      this.props.history.push("/");
+    });
     //example: axios.post('/orders.json', order)
     //add this.props.history.push('/') => redirect /
   };

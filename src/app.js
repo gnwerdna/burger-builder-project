@@ -1,17 +1,30 @@
-const express = require('express');
-require("./db/mongoose");
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
+const bodyParser = require("body-parser");
+const userRouter = require("./routes/user");
+const orderRouter = require("./routes/order");
 
-const userRouter = require('./routes/user');
-const burgerRouter = require('./routes/burger');
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-const PORT = process.env.PORT;
+//db config
+const db = require("./config/keys").mongoURL;
+
+//connect to mongodb
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB connected!"))
+  .catch(err => console.log(err));
+app.use(urlencodedParser);
+app.use(bodyParser.json());
 
 app.use(express.json());
 
 app.use(userRouter);
-app.use(burgerRouter);
+app.use(orderRouter);
 
-app.listen(PORT, () => {
-    console.log("Server is up on port " + PORT);
-})
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
+});

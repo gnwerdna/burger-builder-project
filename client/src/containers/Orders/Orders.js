@@ -1,25 +1,49 @@
-import React from 'react'
-import Order from '../../components/Order/Order';
+import React from "react";
+import Order from "../../components/Order/Order";
+import Modal from "../../components/UI/Modal/Modal";
 class Orders extends React.Component {
-    state = {
-        orders: []
+  state = {
+    orders: [],
+    error: null,
+    show: false
+  };
+  componentDidMount() {
+    //fetch data in here
+    fetch("/orders", {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(resData => {
+        if (resData.error) {
+          this.setState({ error: resData.error });
+        } else {
+          let dataArray = [];
+          for (let key in resData) {
+            dataArray.push({
+              id: key,
+              ...resData[key]
+            });
+          }
+          this.setState({ orders: dataArray });
+        }
+      });
+    //ex axios.get('/orders.json')
+  }
+  render() {
+    let errorModal = this.state.orders.map(order => (
+      <Order
+        key={order.id}
+        ingredients={order.ingredients}
+        price={order.price}
+      />
+    ));
+    if (this.state.error) {
+      errorModal = <Modal show={true}>{this.state.error}</Modal>;
     }
-    componentDidMount() {
-        //fetch data in here
-        //ex axios.get('/orders.json')
-    }
-    render() {
-         return (
-             <div>
-                 {this.state.orders.map(order => (
-                     <Order 
-                        key={order.id}
-                        ingredients={order.ingredients}
-                        price={order.price}/>
-                 ))}
-             </div>
-         );
-    }
+    return <div>{errorModal}</div>;
+  }
 }
 
-export default Orders
+export default Orders;

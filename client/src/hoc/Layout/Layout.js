@@ -6,8 +6,10 @@ import classes from "./Layout.module.css";
 
 class Layout extends React.Component {
   state = {
-    showSideDrawer: false
+    showSideDrawer: false,
+    isAuthenticated: false
   };
+
 
   sideDrawerCloseHandler = () => {
     this.setState({ showSideDrawer: false });
@@ -21,8 +23,12 @@ class Layout extends React.Component {
   render() {
     return (
       <Aux>
-        <Toolbar sideDrawerToggleClicked={this.sideDrawerToggleHandler} />
+        <Toolbar
+          isAuth={this.state.isAuthenticated}
+          sideDrawerToggleClicked={this.sideDrawerToggleHandler}
+        />
         <SideDrawer
+          isAuth={this.state.isAuthenticated}
           open={this.state.showSideDrawer}
           closed={this.sideDrawerCloseHandler}
         />
