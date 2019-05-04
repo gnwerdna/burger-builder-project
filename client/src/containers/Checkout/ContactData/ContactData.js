@@ -181,6 +181,7 @@ class ContactData extends React.Component {
       body: JSON.stringify(order)
     }).then(res => {
       this.props.history.push("/");
+      alert("Order success!");
     });
     //example: axios.post('/orders.json', order)
     //add this.props.history.push('/') => redirect /

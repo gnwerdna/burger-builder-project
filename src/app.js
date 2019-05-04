@@ -2,11 +2,25 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const path = require("path");
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/user");
 const orderRouter = require("./routes/order");
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+//production mode
+app.use(express.static(path.join(__dirname, 'client/build')));
+if(process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname = "client/build/index.html"));
+  });
+}
+
+//build mode 
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + "/client/public/index.html");
+});
 
 //db config
 const db = require("./config/keys").mongoURL;
