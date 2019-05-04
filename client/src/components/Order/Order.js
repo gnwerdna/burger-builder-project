@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Order.module.css";
 const order = props => {
   const ingredients = [];
-  for (let ingredientName in ingredients) {
+  for (let ingredientName in props.ingredients) {
     ingredients.push({
       name: ingredientName,
       amount: props.ingredients[ingredientName]
@@ -30,6 +30,10 @@ const order = props => {
       <p>Ingredients: {ingredientOutput}</p>
       <p>
         Price: <strong>USD {Number.parseFloat(props.price).toFixed(2)}</strong>
+      </p>
+      <p>
+        <span style={{ marginRight: "2%" }}><i>Recipient's name: </i><strong>{props.name}</strong></span>
+        <span><i>Address: </i><strong>{props.address}</strong></span>
       </p>
     </div>
   );

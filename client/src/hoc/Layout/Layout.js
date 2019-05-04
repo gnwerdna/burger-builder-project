@@ -11,11 +11,11 @@ class Layout extends React.Component {
   };
 
   componentWillMount() {
-    const token = localStorage.getItem('token');
-    if(token) {
-      this.setState({isAuthenticated: true})
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.setState({ isAuthenticated: true });
     } else {
-      this.setState({isAuthenticated: false})
+      this.setState({ isAuthenticated: false });
     }
   }
 
@@ -36,11 +36,21 @@ class Layout extends React.Component {
       return { showSideDrawer: !prevState.showSideDrawer };
     });
   };
+
+  loginHandler = () => {
+    this.setState({isAuthenticated: true});
+  }
+
+  logoutHandler = () => {
+    this.setState({ isAuthenticated: false });
+  };
   render() {
     return (
       <Aux>
         <Toolbar
           isAuth={this.state.isAuthenticated}
+          logoutHandler={this.logoutHandler}
+          loginHandler={this.loginHandler}
           sideDrawerToggleClicked={this.sideDrawerToggleHandler}
         />
         <SideDrawer

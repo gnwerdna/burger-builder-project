@@ -5,7 +5,7 @@ import { Route } from "react-router-dom";
 class Checkout extends React.Component {
   state = {
     ingredients: null,
-    price: 0
+    totalPrice: null
   };
 
   componentWillMount() {
@@ -24,7 +24,6 @@ class Checkout extends React.Component {
       ingredients: ingredients,
       totalPrice: price
     });
-    console.log(ingredients);
   }
 
   checkoutCancelledHandler = () => {
@@ -47,7 +46,7 @@ class Checkout extends React.Component {
           render={(props) => (
             <ContactData
               ingredients={this.state.ingredients}
-              price={this.state.price}
+              price={this.state.totalPrice}
               {...props}
             />
 

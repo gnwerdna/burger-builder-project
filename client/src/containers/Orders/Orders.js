@@ -19,13 +19,15 @@ class Orders extends React.Component {
         if (resData.error) {
           this.setState({ error: resData.error });
         } else {
+          console.log(resData)
           let dataArray = [];
           for (let key in resData) {
             dataArray.push({
               id: key,
               ...resData[key]
-            });
+            }); 
           }
+          console.log(dataArray);
           this.setState({ orders: dataArray });
         }
       });
@@ -37,6 +39,8 @@ class Orders extends React.Component {
         key={order.id}
         ingredients={order.ingredients}
         price={order.price}
+        name={order.customer.name}
+        address={order.customer.street}
       />
     ));
     if (this.state.error) {
