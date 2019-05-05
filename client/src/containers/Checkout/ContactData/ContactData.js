@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./ContactData.module.css";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
-import {BASE_URL} from '../../constants/abstract';
+import {BASE_URL} from '../../../constants/abstract';
 class ContactData extends React.Component {
   // state = {
   //   orderForm: {
