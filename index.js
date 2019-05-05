@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
-const userRouter = require("./routes/user");
-const orderRouter = require("./routes/order");
+const userRouter = require("./src/routes/user");
+const orderRouter = require("./src/routes/order");
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 //production mode
@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
 });
 
 //db config
-const db = require("./config/keys").mongoURL;
+const db = require("./src/config/keys").mongoURL;
 
 //connect to mongodb
 mongoose
