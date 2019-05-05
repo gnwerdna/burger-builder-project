@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon src/app.js",
-    "start": "node src/app.js",
+    "server": "nodemon src/index.js",
+    "start": "node src/index.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": 
-      "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
