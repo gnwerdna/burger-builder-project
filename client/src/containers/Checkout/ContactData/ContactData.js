@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./ContactData.module.css";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
+import {BASE_URL} from '../../constants/abstract';
 class ContactData extends React.Component {
   // state = {
   //   orderForm: {
@@ -170,7 +171,7 @@ class ContactData extends React.Component {
     };
 
     //fetch in here method: post,
-    fetch("/orders", {
+    fetch(BASE_URL + "/orders", {
       method: "post",
       withCredentials: true,
       credentials: 'include',

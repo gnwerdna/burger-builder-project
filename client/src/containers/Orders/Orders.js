@@ -1,6 +1,7 @@
 import React from "react";
 import Order from "../../components/Order/Order";
 import Modal from "../../components/UI/Modal/Modal";
+import { BASE_URL } from "../../constants/abstract";
 class Orders extends React.Component {
   state = {
     orders: [],
@@ -9,7 +10,7 @@ class Orders extends React.Component {
   };
   componentDidMount() {
     //fetch data in here
-    fetch("/orders", {
+    fetch(BASE_URL + "/orders", {
       headers: {
         Authorization: localStorage.getItem("token")
       }
@@ -19,13 +20,13 @@ class Orders extends React.Component {
         if (resData.error) {
           this.setState({ error: resData.error });
         } else {
-          console.log(resData)
+          console.log(resData);
           let dataArray = [];
           for (let key in resData) {
             dataArray.push({
               id: key,
               ...resData[key]
-            }); 
+            });
           }
           console.log(dataArray);
           this.setState({ orders: dataArray });

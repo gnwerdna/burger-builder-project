@@ -1,8 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import {BASE_URL} from '../../constants/abstract';
 class Logout extends React.Component {
   componentDidMount() {
-    fetch("/me/logout", {
+    fetch(BASE_URL + "/me/logout", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
