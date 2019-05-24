@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./ContactData.module.css";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
-import {BASE_URL} from '../../../constants/abstract';
+import { BASE_URL } from "../../../constants/abstract";
 class ContactData extends React.Component {
   // state = {
   //   orderForm: {
@@ -75,7 +75,6 @@ class ContactData extends React.Component {
   //   },
   //   formIsValid: false
   // };
-
 
   state = {
     orderForm: {
@@ -173,11 +172,9 @@ class ContactData extends React.Component {
     //fetch in here method: post,
     fetch(BASE_URL + "/orders", {
       method: "post",
-      withCredentials: true,
-      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": localStorage.getItem('token')
+        Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify(order)
     }).then(res => {

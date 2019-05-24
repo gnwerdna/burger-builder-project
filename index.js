@@ -10,7 +10,6 @@ const orderRouter = require("./src/routes/order");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 //production mode
 
-
 //db config
 const db = require("./src/config/keys").mongoURL;
 
@@ -20,12 +19,12 @@ mongoose
   .then(() => console.log("MongoDB connected!"))
   .catch(err => console.log(err));
 
-app.all('*', function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  });
+app.all("*", function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 app.use(urlencodedParser);
 app.use(bodyParser.json());
 
